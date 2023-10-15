@@ -172,9 +172,9 @@ public final class FileManager {
 	 * @throws IOException
 	 *             In case of loading problems.
 	 */
-	public List<Score> loadHighScores() throws IOException {
+	public List<Score> loadScores() throws IOException {
 
-		List<Score> highScores = new ArrayList<Score>();
+		List<Score> Scores = new ArrayList<Score>();
 		InputStream inputStream = null;
 		BufferedReader bufferedReader = null;
 
@@ -194,13 +194,13 @@ public final class FileManager {
 
 			logger.info("Loading user high scores.");
 
-			Score highScore = null;
+			Score Score = null;
 			String name = bufferedReader.readLine();
 			String score = bufferedReader.readLine();
 
 			while ((name != null) && (score != null)) {
-				highScore = new Score(name, Integer.parseInt(score));
-				highScores.add(highScore);
+				Score = new Score(name, Integer.parseInt(score));
+				Scores.add(Score);
 				name = bufferedReader.readLine();
 				score = bufferedReader.readLine();
 			}
@@ -208,14 +208,14 @@ public final class FileManager {
 		} catch (FileNotFoundException e) {
 			// loads default if there's no user scores.
 			logger.info("Loading default high scores.");
-			highScores = loadDefaultHighScores();
+			Scores = loadDefaultHighScores();
 		} finally {
 			if (bufferedReader != null)
 				bufferedReader.close();
 		}
 
-		Collections.sort(highScores);
-		return highScores;
+		Collections.sort(Scores);
+		return Scores;
 	}
 
 	/**

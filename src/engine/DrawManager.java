@@ -169,6 +169,10 @@ public final class DrawManager {
 	 * @param screen
 	 *            Screen to draw on.
 	 */
+
+	
+
+	
 	public void completeDrawing(final Screen screen) {
 		graphics.drawImage(backBuffer, frame.getInsets().left,
 				frame.getInsets().top, frame);
@@ -241,6 +245,33 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.WHITE);
 		String scoreString = String.format("%04d", score);
 		backBufferGraphics.drawString(scoreString, screen.getWidth() - 60, 25);
+	}
+
+	public void AchievementScreenDrawing(final Screen screen) {
+		backBufferGraphics.setFont(fontRegular);
+		backBufferGraphics.setColor(Color.WHITE);
+		int height = 25;
+		
+		backBufferGraphics.drawString( "ESC TO ESCAPE", 5, height);
+		char[] content = "The Record".toCharArray();
+		backBufferGraphics.drawString("The Record", screen.getWidth()/2 - fontRegularMetrics.charsWidth(content,0,content.length)/2, screen.getHeight()/5);
+
+	}
+
+
+
+	public void drawScores(final Screen screen, final List<Score> score) {
+		backBufferGraphics.setFont(fontRegular);
+		backBufferGraphics.setColor(Color.WHITE);
+		int height =  screen.getHeight()/4;
+
+        for ( int i = 0; i <score.size();i++) {
+			Score item = score.get(i);
+			String scoreString = item.getName() + String.format("%04d", item.getScore());
+			char[] content = "The Record".toCharArray();
+			backBufferGraphics.drawString(scoreString,screen.getWidth()/2 - fontRegularMetrics.charsWidth(content,0,content.length)/2, height);
+			height +=20;
+		}
 	}
 
 	/**
