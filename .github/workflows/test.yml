@@ -2,10 +2,13 @@ name: Notification on PR
 
 on:
   pull_request:
-    branches: [ main, team/react, hotfix/slack ]
+    branches:
+      - main
+      - team/react
 
 jobs:
   send-slack-notification:
+    if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +24,7 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   discord:
+    if: github.event.pull_request.base.ref == 'team/react'
     runs-on: ubuntu-latest
     steps:
     - name: Discord notification
