@@ -290,6 +290,7 @@ public final class Core {
 				break;
 			case 6:
 				//  Achievement.
+				NetworkManager.getInstance().requestHTTPGet();
 				SoundManager.stopSound("menu",1f);
 				SoundManager.playSound("BGM/B_Achieve", "achievement", true, true);
 				currentScreen = new AchievementScreen(width, height, FPS);
