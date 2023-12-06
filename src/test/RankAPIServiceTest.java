@@ -1,4 +1,4 @@
-package TestCode;
+package test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.io.BufferedReader;
