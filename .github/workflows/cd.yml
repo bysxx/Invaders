@@ -22,6 +22,10 @@ jobs:
       env:
         PRIVATE_KEY: ${{ secrets.ORACLE_CLOUD_PRIVATE_KEY }}
         HOST: ${{ secrets.ORACLE_CLOUD_USER }}@${{ secrets.ORACLE_CLOUD_IP }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       run: |
         # SSH key 저장 및 권한 설정
         echo "$PRIVATE_KEY" > private_key.pem
@@ -32,5 +36,5 @@ jobs:
           docker pull bysxx/invader-backend:latest
           docker stop invader-backend
           docker rm invader-backend
-          docker run -d --name invader-backend -p 3200:3200 bysxx/invader-backend:latest
+          docker run -e DB_HOST="${DB_HOST}" DB_NAME="${DB_NAME}" DB_USER="${DB_USER}" DB_PASSWORD="${DB_PASSWORD}" -d --name invader-backend -p 3200:3200 bysxx/invader-backend:latest
         EOF
