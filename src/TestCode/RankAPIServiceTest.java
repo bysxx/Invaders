@@ -1,17 +1,17 @@
-
+package TestCode;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
-import EnginePrime.FileManager;
 
 public class RankAPIServiceTest {
+
     @Test
-    static void GetApi() {
+    void GetApi() {
         try {
             // Google.com에 연결할 URL 생성
             URL url = new URL("http://146.56.180.210:3200/rank/1p");
