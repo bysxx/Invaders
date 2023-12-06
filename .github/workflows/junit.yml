@@ -13,11 +13,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up JUnit
-      run: |
-        mkdir $GITHUB_WORKSPACE/Lib
-        wget -O $GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar
-
     - name: Run JUnit tests
       run: |
         java -version  # Optional: Print Java version for verification
