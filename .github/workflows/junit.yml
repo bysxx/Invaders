@@ -1,31 +1,34 @@
 name: CI with JUnit Tests
-
 on:
-  push:
-    branches:
-      - test
-
+    push:
+      branches:
+        - test
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4  # 최신 버전 사용
-      with:
-        node-version: '16'  # Node.js 버전 16으로 지정
-    
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up JDK
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '20.0.2'
-
-    - name: Run JUnit tests
-      run: |
-        java -version  # Optional: Print Java version for verification
-        java -cp $GITHUB_WORKSPACE/src:$GITHUB_WORKSPACE/src/test:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
+    test:
+      runs-on: ubuntu-latest
+      
+      steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+  
+      - name: Checkout Repository
+        uses: actions/checkout@v2  
+  
+      - name: Set up JDK
+        uses: actions/setup-java@v2  
+        with:
+          distribution: 'adopt'
+          java-version: '20.0.2'
+  
+      - name: Update JUnit Platform Console Standalone
+        run: |
+          wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar
+          mv junit-platform-console-standalone-1.8.2.jar $GITHUB_WORKSPACE/Lib/
+  
+      - name: Run JUnit tests
+        run: |
+          java -version
+          java -cp $GITHUB_WORKSPACE/src:$GITHUB_WORKSPACE/src/test:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
+  
