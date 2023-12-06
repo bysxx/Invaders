@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4  # 최신 버전 사용
+      with:
+        node-version: '16'  # Node.js 버전 16으로 지정
+    
     - name: Checkout Repository
       uses: actions/checkout@v2
 
