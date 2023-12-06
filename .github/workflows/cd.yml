@@ -36,5 +36,5 @@ jobs:
           docker pull bysxx/invader-backend:latest
           docker stop invader-backend
           docker rm invader-backend
-          docker run -e DB_HOST="${DB_HOST}" DB_NAME="${DB_NAME}" DB_USER="${DB_USER}" DB_PASSWORD="${DB_PASSWORD}" -d --name invader-backend -p 3200:3200 bysxx/invader-backend:latest
+          docker run -e DB_HOST="${DB_HOST}" -e DB_NAME="${DB_NAME}" -e DB_USER="${DB_USER}" -e DB_PASSWORD="${DB_PASSWORD}" -d --name invader-backend -p 3200:3200 bysxx/invader-backend:latest
         EOF
