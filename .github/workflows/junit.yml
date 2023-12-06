@@ -13,6 +13,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '20.0.2'
+        
     - name: Run JUnit tests
       run: |
         java -version  # Optional: Print Java version for verification
