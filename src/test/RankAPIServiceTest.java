@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class RankAPIServiceTest {
 
     @Test
-    void GetApi() {
+    void testGetApi() {
         try {
             // Google.com에 연결할 URL 생성
             URL url = new URL("http://146.56.180.210:3200/rank/1p");
