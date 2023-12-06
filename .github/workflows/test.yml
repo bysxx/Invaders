@@ -1,5 +1,4 @@
 name: Notification on PR
-
 on:
   pull_request:
     branches:
