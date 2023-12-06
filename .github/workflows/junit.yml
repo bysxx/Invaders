@@ -1,18 +1,13 @@
-name: CI with JUnit Tests
 on:
     push:
       branches:
         - test
-jobs:
+  
+  jobs:
     test:
       runs-on: ubuntu-latest
-      
-      steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16'
   
+      steps:
       - name: Checkout Repository
         uses: actions/checkout@v2  
   
@@ -22,6 +17,12 @@ jobs:
           distribution: 'adopt'
           java-version: '20.0.2'
   
+      - name: Build project
+        run: |
+          # 컴파일할 Java 파일이 있다면 적절한 경로를 지정해주세요
+          find . -name "*.java" > sources.txt
+          javac @sources.txt
+  
       - name: Update JUnit Platform Console Standalone
         run: |
           wget https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar
@@ -30,5 +31,5 @@ jobs:
       - name: Run JUnit tests
         run: |
           java -version
-          java -cp $GITHUB_WORKSPACE/src:$GITHUB_WORKSPACE/src/test:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
+          java -cp $GITHUB_WORKSPACE:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
   
