@@ -1,0 +1,23 @@
+name: CI with JUnit Tests
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK and JUnit
+      run: |
+        sudo apt-get install -y openjdk-11-jdk
+        export PATH=$PATH:$GITHUB_WORKSPACE/Lib
+
+    - name: Run JUnit tests
+      run: |
+        java -cp $GITHUB_WORKSPACE/src:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
