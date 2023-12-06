@@ -18,8 +18,8 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '20.0.2'
-        
+
     - name: Run JUnit tests
       run: |
         java -version  # Optional: Print Java version for verification
-        java -cp $GITHUB_WORKSPACE/src:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
+        java -cp $GITHUB_WORKSPACE/src:$GITHUB_WORKSPACE/src/test:$GITHUB_WORKSPACE/Lib/junit-platform-console-standalone-1.8.2.jar org.junit.platform.console.ConsoleLauncher --scan-classpath
