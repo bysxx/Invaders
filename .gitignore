@@ -184,4 +184,4 @@ scores_2p
 
 # backend
 backend/node_modules
-backend/.env.development.local
+backend/.env.local
